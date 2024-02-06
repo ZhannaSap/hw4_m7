@@ -11,11 +11,13 @@ import com.example.hw4_m7.data.StatisticModel
 import com.example.hw4_m7.databinding.ActivityStatisticBinding
 
 class StatisticActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityStatisticBinding
     private val viewModel: StaticViewModel by viewModels()
     private val adapter = StatisticAdapter(this::onLongClick)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         binding = ActivityStatisticBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -28,14 +30,12 @@ class StatisticActivity : AppCompatActivity() {
 
 
     private fun onLongClick(statisticModel: StatisticModel): Boolean {
-
         val alertDialBuilder = AlertDialog.Builder(this)
             .setMessage("Вы хотите удалить статистику?")
 
             .setPositiveButton("Да") { _, _ ->
                 App.db.staticDao().delete(statisticModel)
                 adapter.notifyDataSetChanged()
-
             }
 
             .setNegativeButton("Нет") { dialog, _ ->

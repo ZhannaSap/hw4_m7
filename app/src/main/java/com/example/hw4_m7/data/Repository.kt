@@ -7,8 +7,7 @@ import kotlinx.coroutines.Dispatchers
 
 class Repository {
     fun addStatistic(model: StatisticModel): LiveData<Long> = liveData(Dispatchers.IO) {
-        val insertedId = App.db.staticDao().insert(model)
-        emit(insertedId)
+        emit(App.db.staticDao().insert(model))
     }
 
 

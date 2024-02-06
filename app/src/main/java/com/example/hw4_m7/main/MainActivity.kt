@@ -25,14 +25,14 @@ class MainActivity : AppCompatActivity() {
                 difficulty = binding.sDiff.selectedItem.toString(),
                 mistakes = binding.etError.text.toString(),
             )
-            if (binding.etError.text!!.isEmpty() && binding.etOchki.text!!.isEmpty()){
+            if (binding.etError.text.isEmpty() || binding.etOchki.text.isEmpty()){
                 Toast.makeText(this, "Вводите значения в поля", Toast.LENGTH_SHORT).show()
             }else{
                 viewModel.addStatistic(data).observe(this){
                     if (it != -1L){
                         Toast.makeText(this, "Данные успешно добавились", Toast.LENGTH_SHORT).show()
                     }else{
-                        Toast.makeText(this, "Данные не были добавилены", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Ошибка! Данные не были добавилены", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
